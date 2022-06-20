@@ -16,7 +16,7 @@ mongoose.connect(uri, {useUnifiedTopology: true, useNewUrlParser: true});
 
 const connection = mongoose.connection;
 
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 connection.once('open', function () {
   console.log('MongoDB database connection established successfully');
@@ -33,6 +33,10 @@ app.use(bp.urlencoded({extended: true}));
 
 app.listen(port, function () {
   console.log('Server is running on Port: ' + port);
+});
+
+app.get('/', function(req,res){
+  res.send("Hola");
 });
 
 // Endpoints
